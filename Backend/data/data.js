@@ -1,0 +1,74 @@
+const data = [
+  {
+    "id": 1,
+    "name": "Fresh Milk",
+    "category": "Dairy",
+    "price": 1.99,
+    "stock": 24
+  },
+  {
+    "id": 2,
+    "name": "Brown Bread",
+    "category": "Bakery",
+    "price": 2.49,
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "name": "Bananas",
+    "category": "Fruits",
+    "price": 0.99,
+    "stock": 40
+  },
+  {
+    "id": 4,
+    "name": "Chicken Breast",
+    "category": "Meat",
+    "price": 6.99,
+    "stock": 10
+  },
+  {
+    "id": 5,
+    "name": "Orange Juice",
+    "category": "Beverages",
+    "price": 3.49,
+    "stock": 18
+  },
+  {
+    "id": 6,
+    "name": "Eggs Pack",
+    "category": "Dairy",
+    "price": 2.99,
+    "stock": 30
+  },
+  {
+    "id": 7,
+    "name": "Tomatoes",
+    "category": "Vegetables",
+    "price": 1.29,
+    "stock": 35
+  },
+  {
+    "id": 8,
+    "name": "Potato Chips",
+    "category": "Snacks",
+    "price": 1.79,
+    "stock": 50
+  },
+  {
+    "id": 9,
+    "name": "Rice 1kg",
+    "category": "Grains",
+    "price": 4.99,
+    "stock": 20
+  },
+  {
+    "id": 10,
+    "name": "Chocolate Cookies",
+    "category": "Snacks",
+    "price": 2.19,
+    "stock": 28
+  }
+]
+
+module.exports = data
