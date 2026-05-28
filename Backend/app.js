@@ -15,7 +15,9 @@ app.get('/order', (req, res) => {
     res.sendFile('./views/order.html', { root: __dirname});
 });
 app.get('/data', (req, res) => {
-    res.json(data);
+    setTimeout(
+        () => {res.json(data)},3000
+    );
 });
 app.use((req, res) => {
     res.status(404).sendFile('./views/404.html', { root: __dirname});
