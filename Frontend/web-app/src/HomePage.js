@@ -1,35 +1,13 @@
 import { useEffect, useState } from "react";
+import useFetch from "./useFetch";
 
 function HomePage(){
 
-        const [data , setData] = useState([{}]);
-        const [loading , setLoading] = useState(true);
-        const [error , setError] = useState(null);
-
-
-
-        useEffect(() => {
-            fetch("/data").then(
-                (res) => {
-                    if (!res.ok){
-                        setError("could not fetch data")
-                    }
-                    return res.json();
-                }
-            ).then(
-                (data) => {
-                    setData(data)
-                    setLoading(false);
-                }
-            ).catch(err => {
-                setError(err)
-                }                
-            )
-        },[])
-        
-
+    const {data, loading, error} = useFetch();
 
     return (
+
+
         <div className="home">
             <h2>Home Page</h2>
             {error && <div>{error}</div>}
