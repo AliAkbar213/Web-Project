@@ -14,7 +14,7 @@ function HomePage(){
                     if (!res.ok){
                         setError("could not fetch data")
                     }
-                    res.json();
+                    return res.json();
                 }
             ).then(
                 (data) => {
