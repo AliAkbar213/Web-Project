@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  background-color: #f4faf3;
+  color: #2d3a2d;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +12,131 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* HomePage */
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+.description {
+    line-height: 1.8;
+    color: #4a5f4a;
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 6px solid #8bc58f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 40px;
+
+    background-color: #dff0d8;
+    border-bottom: 2px solid #b9d7af;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.heading {
+    margin: 0;
+    color: #2f5d34;
+    font-size: 1.8rem;
+}
+
+.links {
+    display: flex;
+    gap: 16px;
+}
+
+.link {
+    text-decoration: none;
+    color: #3c5f3f;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.link:hover {
+    background-color: #cceac0;
+}
+
+.link.active {
+    background-color: #6ca96d;
+    color: white;
+    font-weight: bold;
+}
+
+/* Products */
+
+.title {
+    text-align: center;
+    color: #2f5d34;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.item {
+    background-color: #ffffff;
+    border-left: 6px solid #7dbb81;
+
+    margin-bottom: 18px;
+    padding: 18px 22px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.item:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.name {
+    margin: 0 0 10px 0;
+    color: #2f5d34;
+    font-size: 1.3rem;
+}
+
+.category {
+    margin: 6px 0;
+    color: #5a6b5a;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.price {
+    margin: 10px 0 0 0;
+    color: #6ca96d;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.loading {
+    text-align: center;
+    color: #3f6f44;
+    font-weight: bold;
+}
+
+.error {
+    background-color: #ffe5e5;
+    color: #b33a3a;
+
+    padding: 12px;
+    border-radius: 8px;
+
+    margin-bottom: 20px;
 }

@@ -14,10 +14,11 @@ function useFetch(){
                 }
                 return res.json();
             })
-            .then(
-            (data) => {
-                setData(data);
-                setLoading(false);
+            .then((data) => {
+                setTimeout(() => {
+                    setData(data);
+                    setLoading(false);
+                }, 2000);
             })
             .catch(err => {
                 setError(err);
