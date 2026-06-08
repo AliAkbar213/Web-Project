@@ -2,7 +2,7 @@ import useFetch from "./useFetch";
 
 function Products() {
 
-    const {data, loading, error} = useFetch();
+    const {data, loading, error} = useFetch("http://localhost:3001/products");
     
     return (
         <div className="container">
@@ -12,8 +12,6 @@ function Products() {
             {data.map((item) => (
             <div className="item" key={item.id}>
                 <h3 className='name'> {item.name} </h3>
-                <p className='category'> {item.category} </p>
-                <p className='price'> {item.price} </p>
             </div>
             ))}
         </div>

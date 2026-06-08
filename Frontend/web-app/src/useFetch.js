@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
-function useFetch(){
+function useFetch(url){
 
     const [data , setData] = useState([]);
     const [loading , setLoading] = useState(true);
     const [error , setError] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3001/products").then(
+        fetch(url).then(
             (res) => {
                 if (!res.ok){
                     setError("could not fetch data")
