@@ -6,7 +6,8 @@ function Navbar(){
             <h1 className='heading'>Groceries</h1>
             <div className="links">
                 <NavLink className='link' to="/">Home React</NavLink>
-                <NavLink className='link' to="/Products">Products React</NavLink>
+                <NavLink className='link' to="/products">Products</NavLink>
+                <NavLink className='link' to="/create">Add Product</NavLink>
             </div>
         </nav>
     );

@@ -11,7 +11,8 @@ function Products() {
             {loading && <div className="loading">Loading...</div>}
             {data.map((item) => (
             <div className="item" key={item.id}>
-                <h3 className='name'> {item.name} </h3>
+                <h3 className='name'> {item.item} </h3>
+                <h5 className='category'> {item.category} </h5>
             </div>
             ))}
         </div>

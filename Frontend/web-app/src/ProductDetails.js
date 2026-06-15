@@ -13,7 +13,7 @@ function ProductDetails(){
             {loading && <div className="loading">Loading...</div>}
             <div className="product-details" key={item.id}>
                 <h3 className='name'> {item.name} </h3>
-                <p className='category'> {item.category} </p>
+                <p className='brand'> {item.category} </p>
                 <p className='price'> {item.price} </p>
             </div>
         </div>
