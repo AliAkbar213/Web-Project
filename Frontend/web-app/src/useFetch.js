@@ -20,6 +20,7 @@ function useFetch(url){
             })
             .catch(err => {
                 setError(err.message);
+                setLoading(false)
             })
     },[])
 

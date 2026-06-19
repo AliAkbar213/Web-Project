@@ -1,24 +1,24 @@
 const express = require("express");
 const data = require("./data/data");
+const mysql = require("mysql");
+
+const con = mysql.createConnection({
+    "host" : "localhost"
+})
 
 const app = express();
-
 app.listen(5000);
-
-app.get('/', (req, res) => {
-    res.sendFile('./views/index.html', { root: __dirname});
-});
-app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname});
-});
-app.get('/order', (req, res) => {
-    res.sendFile('./views/order.html', { root: __dirname});
+app.get('/products/:id', (req, res) => {
+    const id = req.params.id ;
+    const product = data.find( x => x.id == id );
+    res.send(product);
 });
 app.get('/products', (req, res) => {
     setTimeout(
-        () => {res.json(data)},2000
+        () => res.send(data)
+        ,1000
     );
 });
 app.use((req, res) => {
-    res.status(404).sendFile('./views/404.html', { root: __dirname});
+    res.status(404);
 });
