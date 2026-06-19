@@ -14,9 +14,9 @@ app.get('/about', (req, res) => {
 app.get('/order', (req, res) => {
     res.sendFile('./views/order.html', { root: __dirname});
 });
-app.get('/data', (req, res) => {
+app.get('/products', (req, res) => {
     setTimeout(
-        () => {res.json(data)},3000
+        () => {res.json(data)},2000
     );
 });
 app.use((req, res) => {

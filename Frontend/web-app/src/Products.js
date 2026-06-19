@@ -2,7 +2,7 @@ import useFetch from "./useFetch";
 
 function Products() {
 
-    const {data, loading, error} = useFetch("http://localhost:3001/products");
+    const {data, loading, error} = useFetch("/products");
     
     return (
         <div className="container">

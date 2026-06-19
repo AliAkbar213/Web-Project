@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 function ProductDetails(){
     
     const {id} = useParams();
-    const {data, loading, error} = useFetch(`http://localhost:3001/products/${id}`);
+    const {data, loading, error} = useFetch(`/products/${id}`);
     const item = data
 
     return(

@@ -15,13 +15,11 @@ function useFetch(url){
                 return res.json();
             })
             .then((data) => {
-                setTimeout(() => {
                     setData(data);
                     setLoading(false);
-                }, 2000);
             })
             .catch(err => {
-                setError(err);
+                setError(err.message);
             })
     },[])
 
