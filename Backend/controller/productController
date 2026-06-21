@@ -1,0 +1,38 @@
+const data = require("../data/data");
+const con = require("../data/dbConnection")
+
+const getAllProducts = (req, res) => {
+    con.query("SELECT * FROM products", (err, result) => {
+        // if (err) {
+        //     return res.status(500).json({
+        //         error: err.message
+        //     });
+        // }
+        // res.json(result);
+
+        if(!err) { res.json(result)}
+            else {res.json({"err" : err.message})}
+})}
+
+const getProductById = (req, res) => {
+    const id = req.params.id ;
+    const product = data.find( x => x.id == id );
+    res.send(product);
+}
+
+const addProduct = (req, res) => {
+    const {item, category, price} = req.body
+    con.query("INSERT INTO products (item, category, price) VALUES ( ?, ?, ?)",
+        [item, category, price],
+        (err, result) => {
+            if(!err) { res.json(result)}
+                else {res.json({"err" : err.message})}
+        }
+    )
+}
+
+module.exports = {
+    getAllProducts,
+    getProductById,
+    addProduct
+}
