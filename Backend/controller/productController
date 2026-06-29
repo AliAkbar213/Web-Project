@@ -1,16 +1,19 @@
-const data = require("../data/data");
 const pool = require("../data/dbConnection")
 
-const getAllProducts = async (req, res) => {
+const GetAllProducts = async (req, res) => {
+    query = `SELECT products.id, products.name, description, price, stock_quantity, categories.name as category, brands.name as brand, created_at
+            FROM products JOIN categories ON products.category_id = categories.id
+            JOIN brands on products.brand_id = brands.id`
+            
     try{
-        const [rows] = await pool.execute("SELECT * FROM products");
+        const [rows] = await pool.execute(query);
         res.json(rows);
     }catch(err){
         res.json({"err" : err.message})
     }
 }
 
-const getProductById = async (req, res) => {
+const GetProductById = async (req, res) => {
     const id = req.params.id ;
     try {
         const [rows] = await pool.execute('SELECT * FROM products WHERE id = ?', [id])
@@ -20,54 +23,52 @@ const getProductById = async (req, res) => {
     }
 }
 
-const addProduct = async(req, res) => {
-    const {item, category, price} = req.body
-    try {
-        const [row] = await pool.execute("INSERT INTO products (item, category, price) VALUES ( ?, ?, ?)", [item, category, price])
-        res.status(201).json({
-            id: row.insertId,
-            item,
-            category,
-            price
-        });
-    } catch (err) {
-        res.json({"err" : err.message})
-    }
-}
-
-const UpdateProduct = async (req, res) => {
-    const id = req.params.id
-    const keys = []
-    const values = []
-    for (key in req.body){
-        keys.push(`${key} = ?`);
-        values.push(req.body[key]);
-    }
-    const update = keys.join(',')
+// const AddProduct = async(req, res) => {
+//     const {item, category, price} = req.body
+//     try {
+//         const [row] = await pool.execute("INSERT INTO products (item, category, price) VALUES ( ?, ?, ?)",
+//              [item, category, price])
+//         res.status(201).json({
+//             id: row.insertId,
+//             item,
+//             category,
+//             price
+//         });
+//     } catch (err) {
+//         res.json({"err" : err.message})
+//     }
+// }
+// 
+// const UpdateProduct = async (req, res) => {
+//     const id = req.params.id
+//     const keys = []
+//     const values = []
+//     for (key in req.body){
+//         keys.push(`${key} = ?`);
+//         values.push(req.body[key]);
+//     }
+//     const update = keys.join(',')
     
-    try {
-        const [row] = await pool.execute(`UPDATE products SET ${update} WHERE id = ${id}`,values)
-        res.json(row);
-    } catch (err) {
-        res.json({"err" : err.message})
-    }
-}
+//     try {
+//         const [row] = await pool.execute(`UPDATE products SET ${update} WHERE id = ${id}`,values)
+//         res.json(row);
+//     } catch (err) {
+//         res.json({"err" : err.message})
+//     }
+// }
 
-const DeleteProduct = async (req, res) => {
-    const id = req.params.id
+// const DeleteProduct = async (req, res) => {
+//     const id = req.params.id
     
-    try {
-        const [row] = await pool.execute(`DELETE FROM products WHERE id = ${id}`)
-        res.json(row);
-    } catch (err) {
-        res.json({"err" : err.message})
-    }
-}
+//     try {
+//         const [row] = await pool.execute(`DELETE FROM products WHERE id = ${id}`)
+//         res.json(row);
+//     } catch (err) {
+//         res.json({"err" : err.message})
+//     }
+// }
 
 module.exports = {
-    getAllProducts,
-    getProductById,
-    addProduct,
-    UpdateProduct,
-    DeleteProduct
+    GetAllProducts,
+    GetProductById
 }

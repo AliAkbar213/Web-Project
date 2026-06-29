@@ -2,7 +2,7 @@ import useFetch from "./useFetch";
 
 function Products() {
 
-    const {data, loading, error} = useFetch("/products");
+    const {data, loading, error} = useFetch("/api/products");
     
     return (
         <div className="container">
@@ -10,9 +10,10 @@ function Products() {
             {error && <div className="error">{error}</div>}
             {loading && <div className="loading">Loading...</div>}
             {data.map((item) => (
-            <div className="item" key={item.id}>
-                <h3 className='name'> {item.item} </h3>
-                <h5 className='category'> {item.category} </h5>
+            <div key={item.id}>
+                <h3>{item.name}</h3>
+                <h5>{item.brand}</h5>
+                <h4>{item.price}</h4>
             </div>
             ))}
         </div>
