@@ -1,0 +1,37 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 2rem;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.heading {
+    font-size: 1.8rem;
+    color: #2563eb;
+    margin: 0;
+}
+
+.links {
+    display: flex;
+    gap: 2rem;
+}
+
+.link {
+    color: #555;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.link:hover {
+    color: #2563eb;
+}
+
+.link.active {
+    color: #2563eb;
+    font-weight: 700;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 3px;
+}

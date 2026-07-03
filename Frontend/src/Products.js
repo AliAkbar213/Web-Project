@@ -1,4 +1,6 @@
 import useFetch from "./useFetch";
+import { Link } from "react-router-dom";
+import "./styles/Products.css"
 
 function Products() {
 
@@ -10,11 +12,13 @@ function Products() {
             {error && <div className="error">{error}</div>}
             {loading && <div className="loading">Loading...</div>}
             {data.map((item) => (
-            <div key={item.id}>
-                <h3>{item.name}</h3>
-                <h5>{item.brand}</h5>
-                <h4>{item.price}</h4>
-            </div>
+                <Link to={`/products/${item.id}`} key={item.id} className="product-link">
+                <div className="product-card">
+                    <h3 className="name">{item.name}</h3>
+                    <h5 className="brand">{item.brand}</h5>
+                    <h4 className="price">{item.price}</h4>
+                </div>
+                </Link>
             ))}
         </div>
     )

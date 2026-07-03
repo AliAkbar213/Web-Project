@@ -1,20 +1,28 @@
 import useFetch from "./useFetch";
 import { useParams } from 'react-router-dom'
+import "./styles/ProductDetails.css"
 
 function ProductDetails(){
     
     const {id} = useParams();
-    const {data, loading, error} = useFetch(`/products/${id}`);
+    const {data, loading, error} = useFetch(`/api/products/${id}`);
     const item = data
+    console.log(item);
+    
+    
 
     return(
-        <div className="product-details-container">
+        <div className="container">
             {error && <div className="error">{error}</div>}
             {loading && <div className="loading">Loading...</div>}
-            <div className="product-details" key={item.id}>
-                <h3 className='name'> {item.name} </h3>
-                <p className='brand'> {item.category} </p>
-                <p className='price'> {item.price} </p>
+            <div className="product" >
+                <h2 className="name">{item.name}</h2>
+                <h2 className="brand">{item.brand}</h2>
+                <h2 className="desc">{item.description}</h2>
+                <h2 className="price">{item.price}</h2>
+                <h2 className="stock">In Stock: {item.stock_quantity}</h2>
+
+                <h1 className="err">{item.err}</h1>
             </div>
         </div>
     )

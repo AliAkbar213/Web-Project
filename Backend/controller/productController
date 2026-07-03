@@ -1,9 +1,8 @@
 const pool = require("../data/dbConnection")
 
 const GetAllProducts = async (req, res) => {
-    query = `SELECT products.id, products.name, description, price, stock_quantity, categories.name as category, brands.name as brand, created_at
-            FROM products JOIN categories ON products.category_id = categories.id
-            JOIN brands on products.brand_id = brands.id`
+    query = `SELECT products.id, products.name, price, brands.name as brand, created_at
+            FROM products JOIN brands on products.brand_id = brands.id`
             
     try{
         const [rows] = await pool.execute(query);
@@ -15,9 +14,13 @@ const GetAllProducts = async (req, res) => {
 
 const GetProductById = async (req, res) => {
     const id = req.params.id ;
+    query = `SELECT products.id, products.name, description, price, stock_quantity, categories.name as category, brands.name as brand, created_at
+            FROM products JOIN categories ON products.category_id = categories.id
+            JOIN brands on products.brand_id = brands.id WHERE products.id = ?`
     try {
-        const [rows] = await pool.execute('SELECT * FROM products WHERE id = ?', [id])
-        res.send(rows);
+        const [rows] = await pool.execute(query, [id])
+        if (rows.length == 0) res.json({"err" : "no product found"})
+        res.send(rows[0]);
     } catch (err) {
         res.json({"err" : err.message})
     }
