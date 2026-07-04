@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import HomePage from './HomePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductDetails from './ProductDetails';
-import Create from './Create';
 
 function App() {
   return (
