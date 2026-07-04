@@ -2,12 +2,10 @@ import useFetch from "./useFetch";
 import { useParams } from 'react-router-dom'
 import "./styles/ProductDetails.css"
 
-require("dotenv").config()
-
 function ProductDetails(){
     
     const {id} = useParams();
-    const {data, loading, error} = useFetch(`${process.env.API_URL}/api/products/${id}`);
+    const {data, loading, error} = useFetch(`${process.env.REACT_APP_API_URL}/api/products/${id}`);
     const item = data
     console.log(item);
     
