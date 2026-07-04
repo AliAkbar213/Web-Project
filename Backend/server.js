@@ -2,8 +2,16 @@ require("dotenv").config()
 
 const express = require("express");
 const productRoutes = require("./routes/products");
+const cors = require("cors")
 
 const app = express();
+app.use(cors({
+    origin: [
+        "http://localhost:3000",
+        "https://bytesale.netlify.app"
+    ]
+}));
+
 app.listen(process.env.PORT, () => {
     console.log(`hello ${process.env.PORT}`);
     

@@ -10,7 +10,8 @@ function useFetch(url){
 
     useEffect(() => {
         fetch(url).then(
-            (res) => {                
+            (res) => {        
+                        
                 if (!res.ok){
                     setError("could not fetch data")
                 }
