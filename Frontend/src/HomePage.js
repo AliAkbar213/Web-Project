@@ -1,4 +1,3 @@
-import useFetch from "./useFetch";
 import "./styles/HomePage.css"
 
 function HomePage(){

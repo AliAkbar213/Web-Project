@@ -2,9 +2,12 @@ import useFetch from "./useFetch";
 import { Link } from "react-router-dom";
 import "./styles/Products.css"
 
+require("dotenv").config()
+
+
 function Products() {
 
-    const {data, loading, error} = useFetch("/api/products");
+    const {data, loading, error} = useFetch(`${process.env.API_URL}/api/products`);
     
     return (
         <div className="container">
