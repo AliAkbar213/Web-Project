@@ -1,5 +1,5 @@
 import useFetch from "./useFetch";
-import { Link, redirect, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import "./styles/Products.css"
 import { useState } from "react";
 
