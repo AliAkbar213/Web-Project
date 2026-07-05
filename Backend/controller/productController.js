@@ -3,18 +3,27 @@ const pool = require("../data/dbConnection")
 const GetAllProducts = async (req, res) => {
     query = `SELECT products.id, products.name, price, brands.name as brand, created_at
             FROM products JOIN brands on products.brand_id = brands.id`
-            
+
+    if (req.query.q){
+        query += ` WHERE products.name LIKE "%${req.query.q}%"`
+    }
+
+    console.log(query);   
+
     try{
         const [rows] = await pool.execute(query);
         res.json(rows);
+        console.log(rows);
+        
     }catch(err){
         res.json({"err" : err.message})
     }
 }
 
+
 const GetProductById = async (req, res) => {
     const id = req.params.id ;
-    query = `SELECT products.id, products.name, description, price, stock_quantity, categories.name as category, brands.name as brand, created_at
+    const query = `SELECT products.id, products.name, description, price, stock_quantity, categories.name as category, brands.name as brand, created_at
             FROM products JOIN categories ON products.category_id = categories.id
             JOIN brands on products.brand_id = brands.id WHERE products.id = ?`
     try {

@@ -5,7 +5,8 @@ import "./styles/ProductDetails.css"
 function ProductDetails(){
     
     const {id} = useParams();
-    const {data, loading, error} = useFetch(`${process.env.REACT_APP_API_URL}/api/products/${id}`);
+    const url = process.env.REACT_APP_API_URL || "http://localhost:5000"
+    const {data, loading, error} = useFetch(`${url}/api/products/${id}`);
     const item = data
     console.log(item);
     
