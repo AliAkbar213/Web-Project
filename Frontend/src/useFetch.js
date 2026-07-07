@@ -26,6 +26,11 @@ function useFetch(url){
                 setLoading(false)
             })
     },[url])
+
+    console.log(data);
+    console.log(url);
+    
+    
     
 
     return {data, loading, error}

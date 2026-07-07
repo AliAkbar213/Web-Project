@@ -2,18 +2,20 @@ const pool = require("../data/dbConnection")
 
 const GetAllProducts = async (req, res) => {
     query = `SELECT products.id, products.name, price, brands.name as brand, created_at
-            FROM products JOIN brands on products.brand_id = brands.id`
+            FROM products JOIN brands ON products.brand_id = brands.id`
 
     if (req.query.q){
         query += ` WHERE products.name LIKE "%${req.query.q}%"`
     }
 
-    console.log(query);   
+    const page = parseInt(req.query.page) || 1
+    query += ` ORDER BY price`
+    query += ` LIMIT 15 OFFSET ${15*(page-1)}`
+    console.log(query);
 
     try{
         const [rows] = await pool.execute(query);
         res.json(rows);
-        console.log(rows);
         
     }catch(err){
         res.json({"err" : err.message})
@@ -25,7 +27,7 @@ const GetProductById = async (req, res) => {
     const id = req.params.id ;
     const query = `SELECT products.id, products.name, description, price, stock_quantity, categories.name as category, brands.name as brand, created_at
             FROM products JOIN categories ON products.category_id = categories.id
-            JOIN brands on products.brand_id = brands.id WHERE products.id = ?`
+            JOIN brands ON products.brand_id = brands.id WHERE products.id = ?`
     try {
         const [rows] = await pool.execute(query, [id])
         if (rows.length == 0) res.json({"err" : "no product found"})
@@ -34,6 +36,48 @@ const GetProductById = async (req, res) => {
         res.json({"err" : err.message})
     }
 }
+
+const GetCategories = async (req, res) => {
+    query = `SELECT name FROM categories`
+
+    // if (req.query.q){
+    //     query += ` WHERE products.name LIKE "%${req.query.q}%"`
+    // }
+
+    console.log(query);
+
+    try{
+        const [rows] = await pool.execute(query);
+        res.json(rows);
+        
+    }catch(err){
+        res.json({"err" : err.message})
+    }
+}
+
+const GetProductByCategory = async (req, res) => {
+    query = `SELECT products.id, products.name, price, brands.name as brand, created_at
+            FROM products JOIN brands ON products.brand_id = brands.id JOIN categories ON products.category_id = categories.id`
+
+    // if (req.query.q){
+    //     query += ` WHERE products.name LIKE "%${req.query.q}%"`
+    // }
+
+    query += ` WHERE categories.name LIKE "%${req.params.name}%"`
+    const page = parseInt(req.query.page) || 1
+    query += ` ORDER BY price`
+    query += ` LIMIT 15 OFFSET ${15*(page-1)}`
+    console.log(query);
+
+    try{
+        const [rows] = await pool.execute(query);
+        res.json(rows);
+        
+    }catch(err){
+        res.json({"err" : err.message})
+    }
+}
+
 
 // const AddProduct = async(req, res) => {
 //     const {item, category, price} = req.body
@@ -82,5 +126,7 @@ const GetProductById = async (req, res) => {
 
 module.exports = {
     GetAllProducts,
-    GetProductById
+    GetProductById,
+    GetCategories,
+    GetProductByCategory
 }

@@ -4,34 +4,131 @@
     align-items: center;
 
     padding: 1rem 2rem;
-    background-color: white;
-    border-bottom: 1px solid #ddd;
+    background: var(--charcoal-blue);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+    gap: 2rem;
 }
 
 .heading {
-    font-size: 1.8rem;
-    color: #2563eb;
     margin: 0;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    white-space: nowrap;
 }
+
+/* Search */
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.search {
+    color: white;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.input {
+    width: 100%;
+    max-width: 380px;
+    padding: .65rem 1rem;
+
+    border: 2px solid transparent;
+    border-radius: 8px;
+
+    background: white;
+    color: var(--charcoal-blue);
+
+    transition: .2s;
+}
+
+.input::placeholder {
+    color: var(--cool-steel);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--deep-space-blue);
+    box-shadow: 0 0 0 3px rgba(226, 255, 214, .35);
+}
+
+/* Navigation Links */
 
 .links {
     display: flex;
     gap: 2rem;
+    white-space: nowrap;
 }
 
 .link {
-    color: #555;
+    color: rgba(255,255,255,.75);
     font-weight: 500;
-    transition: color 0.2s;
+    transition: .2s;
+    padding-bottom: .25rem;
 }
 
 .link:hover {
-    color: #2563eb;
+    color: var(--frosted-mint);
 }
 
 .link.active {
-    color: #2563eb;
-    font-weight: 700;
-    border-bottom: 2px solid #2563eb;
-    padding-bottom: 3px;
+    color: white;
+    border-bottom: 2px solid var(--frosted-mint);
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .heading {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search-bar {
+        order: 3;
+        width: 100%;
+    }
+
+    .input {
+        max-width: 100%;
+    }
+
+    .links {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search {
+        text-align: center;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .links {
+        gap: 1.5rem;
+    }
 }

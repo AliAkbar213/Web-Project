@@ -3,12 +3,19 @@ const router = express.Router()
 
 const {
     GetAllProducts,
-    GetProductById
+    GetProductById,
+    GetProductByCategory,
+    GetCategories
 } = require('../controller/productController.js')
 
 router.get('/', GetAllProducts)
 
+router.get('/category', GetCategories)
+
+router.get('/category/:name', GetProductByCategory)
+
 router.get('/:id', GetProductById)
+
 
 // router.post('/', addProduct)
 
