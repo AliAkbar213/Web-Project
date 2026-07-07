@@ -1,12 +1,20 @@
 import useFetch from "./useFetch";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import "./styles/Products.css"
 
 function Products() {
     const [searchParams] = useSearchParams()
+    const {category} = useParams()
+
     const query = searchParams.get("q") || ""
-    const url = process.env.REACT_APP_API_URL || "http://localhost:5000"
-    const {data, loading, error} = useFetch(`${url}/api/products?q=${query}`);
+    let url = process.env.REACT_APP_API_URL || "http://localhost:5000"
+    if (category){
+        url += `/api/products/category/${category}`
+    }else{
+        url += `/api/products?q=${query}`
+    }
+    const {data, loading, error} = useFetch(url);
+    
     
     return (
         <div className="container">

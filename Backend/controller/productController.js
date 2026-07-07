@@ -38,7 +38,7 @@ const GetProductById = async (req, res) => {
 }
 
 const GetCategories = async (req, res) => {
-    query = `SELECT name FROM categories`
+    query = `SELECT * FROM categories`
 
     // if (req.query.q){
     //     query += ` WHERE products.name LIKE "%${req.query.q}%"`

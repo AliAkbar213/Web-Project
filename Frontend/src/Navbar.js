@@ -28,6 +28,7 @@ function Navbar(){
             <div className="links">
                 <NavLink className='link' to="/">Home</NavLink>
                 <NavLink className='link' to="/products">Products</NavLink>
+                <NavLink className='link' to="/category">Categories</NavLink>
             </div>
         </nav>
     );
