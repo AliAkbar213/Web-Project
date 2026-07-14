@@ -1,14 +1,19 @@
 import { NavLink } from 'react-router-dom'
 import "./styles/Navbar.css"
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from './CartContext';
 import { useNavigate } from "react-router-dom";
+import Cart from './Cart'
 
 
-function Navbar(){
+function Navbar() {
 
     const navigate = useNavigate();
     const [search, setSearch] = useState("")
-    
+    const [isOpen, setIsOpen] = useState(false)
+
+    const { cart } = useContext(CartContext)
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,6 +35,8 @@ function Navbar(){
                 <NavLink className='link' to="/products">Products</NavLink>
                 <NavLink className='link' to="/category">Categories</NavLink>
             </div>
+            {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}>Cart</button>}
+            <Cart isOpen={isOpen} closeDrawer={() => {setIsOpen(false)}} />
         </nav>
     );
 }

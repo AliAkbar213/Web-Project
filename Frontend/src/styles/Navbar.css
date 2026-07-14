@@ -66,7 +66,7 @@
 }
 
 .link {
-    color: rgba(255,255,255,.75);
+    color: rgba(255, 255, 255, .75);
     font-weight: 500;
     transition: .2s;
     padding-bottom: .25rem;
@@ -79,6 +79,33 @@
 .link.active {
     color: white;
     border-bottom: 2px solid var(--frosted-mint);
+}
+
+/* Cart Button */
+
+.cart-btn {
+    padding: .7rem 1.25rem;
+
+    border: 2px solid var(--frosted-mint);
+    border-radius: 8px;
+
+    background: transparent;
+    color: white;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.cart-btn:hover {
+    background: var(--frosted-mint);
+    color: var(--charcoal-blue);
+}
+
+.cart-btn:active {
+    transform: scale(.97);
 }
 
 /* Responsive */
@@ -107,6 +134,10 @@
     .links {
         justify-content: center;
         width: 100%;
+    }
+
+    .cart-btn {
+        order: 4;
     }
 }
 

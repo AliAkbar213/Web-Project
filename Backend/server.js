@@ -18,6 +18,19 @@ app.use(express.json()) // for parsing json content of incoming request
 
 app.use('/api/products', productRoutes)
 
+app.use('/images', express.static('images'))
+
+// test function
+
+app.use('/img', (req, res) => {
+    res.json({
+        "id": 1,
+        "name": "Samsung A26",
+        "price": 79.900,
+        "image": "/images/a26.jpeg"
+    })
+})
+
 app.use((req, res) => {
     res.status(404);
 });

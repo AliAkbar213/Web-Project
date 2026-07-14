@@ -12,17 +12,17 @@ function ProductDetails(){
     
 
     return(
-        <div className="container">
-            {error && <div className="error">{error}</div>}
-            {loading && <div className="loading">Loading...</div>}
-            <div className="product" >
-                <h2 className="name">{item.name}</h2>
-                <h2 className="brand">{item.brand}</h2>
-                <h2 className="desc">{item.description}</h2>
-                <h2 className="price">{item.price}</h2>
-                <h2 className="stock">In Stock: {item.stock_quantity}</h2>
+        <div className="details-container">
+            {error && <div className="details-error">{error}</div>}
+            {loading && <div className="details-loading">Loading...</div>}
+            <div className="details-product" >
+                <h2 className="details-name">{item.name}</h2>
+                <h2 className="details-brand">{item.brand}</h2>
+                <h2 className="details-desc">{item.description}</h2>
+                <h2 className="details-price">{item.price}</h2>
+                <h2 className="details-stock">In Stock: {item.stock_quantity}</h2>
 
-                <h1 className="err">{item.err}</h1>
+                <h1 className="details-err">{item.err}</h1>
             </div>
         </div>
     )

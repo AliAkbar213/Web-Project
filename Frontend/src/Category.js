@@ -2,11 +2,11 @@ import useFetch from "./useFetch"
 import "./styles/Category.css"
 import { Link } from "react-router-dom";
 
-function Category(){
+function Category() {
     const url = process.env.REACT_APP_API_URL || "http://localhost:5000"
-    const {data, loading, error} = useFetch(`${url}/api/products/category`);
+    const { data, loading, error } = useFetch(`${url}/api/products/category`);
 
-    return(
+    return (
         <div className="c-container">
             <h2 className="c-heading">Categories</h2>
             {error && <div className="c-error">{error}</div>}

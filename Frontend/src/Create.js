@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Create(){
+function Create() {
     const [item, setItem] = useState('')
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
@@ -11,13 +11,13 @@ function Create(){
     const HandleSubmit = (e) => {
         e.preventDefault()
         setIsPending(true)
-        const product = {item, category, price: Number(price)}
+        const product = { item, category, price: Number(price) }
 
         fetch('/products', {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(product)
-        }).then(()=>{
+        }).then(() => {
             setTimeout(() => {
                 console.log("product added")
                 setIsPending(false)
@@ -48,7 +48,7 @@ function Create(){
 
                 <label>Price: </label>
                 <input type="number" required value={price} onChange={(e) => setPrice(e.target.value)} />
-                
+
                 {!isPending && <button>Add Product</button>}
                 {isPending && <button disabled>Adding...</button>}
             </form>
