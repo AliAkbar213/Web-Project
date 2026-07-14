@@ -12,9 +12,6 @@ function Navbar() {
     const [search, setSearch] = useState("")
     const [isOpen, setIsOpen] = useState(false)
 
-    const { cart } = useContext(CartContext)
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
         navigate(`/products?q=${search}`)
