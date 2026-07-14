@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import "./styles/Navbar.css"
-import { useContext, useState } from 'react'
-import { CartContext } from './CartContext';
+import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Cart from './Cart'
 
