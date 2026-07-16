@@ -48,7 +48,7 @@ function Products() {
           <div className="products-card" key={item.id} >
             <Link to={`/products/${item.id}`} className="products-link">
               <div className="products-image">
-                {item.image_path && <img src={`http://localhost:5000/images/${item.image_path}`} alt={item.name} />}
+                {item.image_path && <img src={`${process.env.REACT_APP_API_URL}/images/${item.image_path}`} alt={item.name} />}
               </div>
               <p className="products-name">{item.name}</p>
               <p className="products-brand">{item.brand}</p>
