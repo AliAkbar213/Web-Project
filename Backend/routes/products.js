@@ -16,7 +16,6 @@ router.get('/category/:name', GetProductByCategory)
 
 router.get('/:id', GetProductById)
 
-
 // router.post('/', addProduct)
 
 // router.delete('/:id', DeleteProduct)

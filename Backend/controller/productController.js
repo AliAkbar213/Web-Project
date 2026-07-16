@@ -7,9 +7,11 @@ const GetAllProducts = async (req, res) => {
     if (req.query.q) {
         query += ` WHERE products.name LIKE "%${req.query.q}%"`
     }
+    if (req.query.sort) {
+        query += ` ORDER BY products.${req.query.sort} ${req.query.order}`
+    }
 
     const page = parseInt(req.query.page) || 1
-    query += ` ORDER BY price`
     query += ` LIMIT 15 OFFSET ${15 * (page - 1)}`
     console.log(query);
 

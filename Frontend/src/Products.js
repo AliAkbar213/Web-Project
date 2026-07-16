@@ -20,8 +20,21 @@ function Products() {
   const { data, loading, error } = useFetch(url);
 
   const { IncreaseCart, decreaseCart, itemInCart, cart } = useContext(CartContext)
+  // const changePage = (newPage) => {
+  //   setSearchParams({ page: newPage });
+  // }
+
   const changePage = (newPage) => {
-    setSearchParams({ page: newPage });
+    // 1. Create a new URLSearchParams object from the existing ones to preserve 'q'
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("page", newPage);
+    setSearchParams(newParams);
+    
+    // 2. Scroll to top
+    window.scrollTo({
+      top: 80,
+      behavior: "smooth" 
+    });
   }
 
   return (

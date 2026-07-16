@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import "./styles/Navbar.css"
+import image from './icons/grocery-store.png'
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Cart from './Cart'
@@ -31,7 +32,7 @@ function Navbar() {
                 <NavLink className='link' to="/products">Products</NavLink>
                 <NavLink className='link' to="/category">Categories</NavLink>
             </div>
-            {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}>Cart</button>}
+            {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}><img src={image} alt="Cart" className='cart-icon' /></button>}
             <Cart isOpen={isOpen} closeDrawer={() => {setIsOpen(false)}} />
         </nav>
     );
