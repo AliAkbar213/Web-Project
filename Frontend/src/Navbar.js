@@ -1,41 +1,45 @@
 import { NavLink } from 'react-router-dom'
 import "./styles/Navbar.css"
 import image from './icons/grocery-store.png'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Cart from './Cart'
+import { AuthContext } from './AuthContext';
 
 
 function Navbar() {
+  const navigate = useNavigate();
+  const {user} = useContext(AuthContext)
 
-    const navigate = useNavigate();
-    const [search, setSearch] = useState("")
-    const [isOpen, setIsOpen] = useState(false)
+  const [search, setSearch] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        navigate(`/products?q=${search}`)
-        setSearch("")
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate(`/products?q=${search}`)
+    setSearch("")
+  }
 
-    return (
-        <nav className="navbar">
-            <h1 className='heading'>Tech Store</h1>
+  return (
+    <nav className="navbar">
+      <h1 className='heading'>Tech Store</h1>
+      <form onSubmit={handleSubmit} className="search-bar">
+        <label className="search"> Search: </label>
+        <input type="text" className="input" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search products..." />
+      </form>
 
-            <form onSubmit={handleSubmit} className="search-bar">
-                <label className="search"> Search: </label>
-                <input type="text" className="input" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search products..." />
-            </form>
-
-            <div className="links">
-                <NavLink className='link' to="/">Home</NavLink>
-                <NavLink className='link' to="/products">Products</NavLink>
-                <NavLink className='link' to="/category">Categories</NavLink>
-            </div>
-            {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}><img src={image} alt="Cart" className='cart-icon' /></button>}
-            <Cart isOpen={isOpen} closeDrawer={() => {setIsOpen(false)}} />
-        </nav>
-    );
+      <div className="links">
+        <NavLink className='link' to="/">Home</NavLink>
+        <NavLink className='link' to="/products">Products</NavLink>
+        <NavLink className='link' to="/category">Categories</NavLink>
+        <NavLink className='link' to="/signup">Sign up</NavLink>
+        <NavLink className='link' to="/login">Login</NavLink>
+        <NavLink className='link' to="/profile">Profile</NavLink>
+      </div>
+      {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}><img src={image} alt="Cart" className='cart-icon' /></button>}
+      <Cart isOpen={isOpen} closeDrawer={() => { setIsOpen(false) }} />
+    </nav>
+  );
 }
 
 export default Navbar

@@ -1,39 +1,38 @@
 import { useState, useEffect } from "react";
 
-function useFetch(url){    
+function useFetch(url) {
 
-    const [data , setData] = useState([]);
-    const [loading , setLoading] = useState(true);
-    const [error , setError] = useState(null);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     console.log(url);
-    
+
 
     useEffect(() => {
-        fetch(url).then(
-            (res) => {        
-                        
-                if (!res.ok){
+        fetch(url, { credentials: "include" }).then(
+            (res) => {
+                if (!res.ok) {
                     setError("could not fetch data")
                 }
                 return res.json();
             })
             .then((data) => {
-                    setData(data);
-                    setLoading(false);
+                setData(data);
+                setLoading(false);
             })
-            .catch(err => {                
+            .catch(err => {
                 setError(err.message);
                 setLoading(false)
             })
-    },[url])
+    }, [url])
 
     console.log(data);
     console.log(url);
-    
-    
-    
 
-    return {data, loading, error}
+
+
+
+    return { data, loading, error }
 
 }
 

@@ -5,12 +5,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductDetails from './ProductDetails';
 import Category from './Category';
 import { CartProvider } from './CartContext';
+import { AuthProvider } from './AuthContext';
+import Signup from './Signup';
+import Login from './Login';
+import Profile from './Profile';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <CartProvider>
+        <CartProvider><AuthProvider>
           < Navbar />
           <Routes>
             <Route path='/' element={<HomePage />} />
@@ -18,9 +22,12 @@ function App() {
             <Route path='/products/:id' element={<ProductDetails />} />
             <Route path='/category' element={<Category />} />
             <Route path='/products/category/:category' element={<Products />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/profile' element={<Profile />} />
             {/* <Route path='/create' element={<Create />} /> */}
           </Routes>
-        </CartProvider>
+        </AuthProvider></CartProvider>
       </BrowserRouter>
     </div>
   );

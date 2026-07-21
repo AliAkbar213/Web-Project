@@ -11,7 +11,8 @@ function Products() {
 
   const query = searchParams.get("q") || ""
   const page = parseInt(searchParams.get("page")) || 1
-  let url = process.env.REACT_APP_API_URL || "http://localhost:5000"
+  let url = process.env.REACT_APP_API_URL
+
   if (category) {
     url += `/api/products/category/${category}?page=${page}`
   } else {
@@ -29,11 +30,11 @@ function Products() {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("page", newPage);
     setSearchParams(newParams);
-    
+
     // 2. Scroll to top
     window.scrollTo({
       top: 80,
-      behavior: "smooth" 
+      behavior: "smooth"
     });
   }
 
@@ -54,10 +55,10 @@ function Products() {
               <p className="products-brand">{item.brand}</p>
               <p className="products-price">{item.price}</p>
             </Link>
-            {!(itemInCart(item.id)) && <button onClick={() => { IncreaseCart(item.id, item.name, item.price);console.log(cart);}} className="products-add-btn">Add To Cart</button>}
+            {!(itemInCart(item.id)) && <button onClick={() => { IncreaseCart(item.id, item.name, item.price); console.log(cart); }} className="products-add-btn">Add To Cart</button>}
             {itemInCart(item.id) &&
               <div className="products-buttons">
-                <button onClick={() => { IncreaseCart(item.id);console.log(cart); }} className="products-inc-btn">+</button>
+                <button onClick={() => { IncreaseCart(item.id); console.log(cart); }} className="products-inc-btn">+</button>
                 <p className="products-quantity">In Cart: {cart.find((cartItem) => cartItem.id === item.id).quantity}</p>
                 <button onClick={() => { decreaseCart(item.id) }} className="products-dec-btn">-</button>
               </div>}

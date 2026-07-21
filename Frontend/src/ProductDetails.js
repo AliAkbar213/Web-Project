@@ -2,16 +2,16 @@ import useFetch from "./useFetch";
 import { useParams } from 'react-router-dom'
 import "./styles/ProductDetails.css"
 
-function ProductDetails(){
-    
-    const {id} = useParams();
+function ProductDetails() {
+
+    const { id } = useParams();
     const url = process.env.REACT_APP_API_URL || "http://localhost:5000"
-    const {data, loading, error} = useFetch(`${url}/api/products/${id}`);
+    const { data, loading, error } = useFetch(`${url}/api/products/${id}`);
     const item = data
     console.log(item);
-    
 
-    return(
+
+    return (
         <div className="details-container">
             {error && <div className="details-error">{error}</div>}
             {loading && <div className="details-loading">Loading...</div>}

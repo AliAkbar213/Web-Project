@@ -1,14 +1,17 @@
 require("dotenv").config()
 const express = require("express");
 const productRoutes = require("./routes/products");
-const cors = require("cors")
+const userRoutes = require("./routes/user");
+const cors = require("cors");
+const session = require("express-session");
 
 const app = express();
 app.use(cors({
     origin: [
         "http://localhost:3000",
         "https://bytesale.netlify.app"
-    ]
+    ],
+    credentials: true
 }));
 
 app.listen(process.env.PORT, () => {
@@ -16,7 +19,18 @@ app.listen(process.env.PORT, () => {
 });
 app.use(express.json()) // for parsing json content of incoming request
 
+app.use(session({
+    secret: 'test',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 30,
+        secure: false
+    }
+}))
+
 app.use('/api/products', productRoutes)
+app.use('/api/user', userRoutes)
 
 app.use('/images', express.static('images'))
 
