@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from "./AuthContext"
+import "./styles/Login.css"
 
 
 function Login() {
@@ -32,25 +33,73 @@ function Login() {
 
     if (!response.ok) {
       setError(data.err)
+      console.log("not okay");
+      
     } else {
+      console.log("okay");
       updateUser(data)
       navigate('/profile')
     }
   }
 
   return (
-    <div className="login">
-      <h1 className="login-title">Login in</h1>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <label> email </label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label> password </label>
-        <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
-        {!loading && <button type="submit" className="login-btn"> Login </button>}
-      </form>
-      {error && <p className="login-error">{error}</p>}
-      <p>Don't have an Account?</p>
-      <NavLink to="/Signup" className="login-link">Sign up</NavLink>
+    <div className="login-container">
+      <div className="login-card">
+
+        <h1 className="login-title">Login</h1>
+
+        <form
+          className="login-form"
+          onSubmit={handleSubmit}
+        >
+
+          <label className="login-label">Email</label>
+          <input
+            className="login-input"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label className="login-label">Password</label>
+          <input
+            className="login-input"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {!loading &&
+            <button
+              type="submit"
+              className="login-submit-btn"
+            >
+              Login
+            </button>
+          }
+
+          {error &&
+            <p className="login-error">
+              {error}
+            </p>
+          }
+
+        </form>
+
+        <div className="login-footer">
+          <p className="login-footer-text">
+            Don't have an account?
+          </p>
+
+          <NavLink
+            to="/signup"
+            className="login-signup-link"
+          >
+            Sign Up
+          </NavLink>
+        </div>
+
+      </div>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import "./styles/Navbar.css"
 import image from './icons/grocery-store.png'
 import { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import Cart from './Cart'
+import CartDrawer from './CartDrawer'
 import { AuthContext } from './AuthContext';
 
 
@@ -37,7 +37,7 @@ function Navbar() {
         <NavLink className='link' to="/profile">Profile</NavLink>
       </div>
       {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}><img src={image} alt="Cart" className='cart-icon' /></button>}
-      <Cart isOpen={isOpen} closeDrawer={() => { setIsOpen(false) }} />
+      <CartDrawer isOpen={isOpen} closeDrawer={() => { setIsOpen(false) }} />
     </nav>
   );
 }

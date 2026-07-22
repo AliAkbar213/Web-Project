@@ -2,7 +2,9 @@ import "./styles/HomePage.css"
 
 function HomePage() {
     return (
-        <div></div>
+        <div>
+            
+        </div>
     );
 }
 

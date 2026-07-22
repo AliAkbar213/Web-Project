@@ -1,6 +1,8 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "./AuthContext"
+import "./styles/Signup.css"
+
 
 
 function Signup() {
@@ -40,18 +42,57 @@ function Signup() {
   }
 
   return (
-    <div className="signup">
-      <h1 className="signup-title">Sign Up</h1>
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <label> name </label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        <label> email </label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label> password </label>
-        <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
-        {!loading && <button type="submit" className="signup-btn"> Sign up </button>}
-        {error && <p className="signup-error">{error}</p>}
-      </form>
+    <div className="signup-container">
+
+      <div className="signup-card">
+
+        <h1 className="signup-title">Create Account</h1>
+
+        <form className="signup-form" onSubmit={handleSubmit}>
+
+          <label className="signup-label">Name</label>
+          <input
+            className="signup-input"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
+          <label className="signup-label">Email</label>
+          <input
+            className="signup-input"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label className="signup-label">Password</label>
+          <input
+            className="signup-input"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {!loading &&
+            <button
+              type="submit"
+              className="signup-submit-btn"
+            >
+              Sign Up
+            </button>
+          }
+
+          {error &&
+            <p className="signup-error">
+              {error}
+            </p>
+          }
+
+        </form>
+
+      </div>
+
     </div>
   )
 }

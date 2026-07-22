@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "./CartContext";
 import './styles/CartDrawer.css'
 
-function Cart({ isOpen, closeDrawer }) {
+function CartDrawer({ isOpen, closeDrawer }) {
   const { cart, IncreaseCart, decreaseCart, removeCart, deleteCart } = useContext(CartContext)
 
   return (
@@ -42,4 +42,4 @@ function Cart({ isOpen, closeDrawer }) {
   )
 }
 
-export default Cart
+export default CartDrawer

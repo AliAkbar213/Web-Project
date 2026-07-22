@@ -9,6 +9,7 @@ import { AuthProvider } from './AuthContext';
 import Signup from './Signup';
 import Login from './Login';
 import Profile from './Profile';
+import { Footer } from './Footer';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             {/* <Route path='/create' element={<Create />} /> */}
           </Routes>
+          <Footer />
         </AuthProvider></CartProvider>
       </BrowserRouter>
     </div>

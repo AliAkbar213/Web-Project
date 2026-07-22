@@ -19,7 +19,7 @@ const loginUser = async (req, res) => {
         res.json({ "err": "password incorrect" })
       }
     } else {
-      res.json({ "err": "user does not exist" })
+      res.status(400).json({ "err": "user does not exist" })
     }
   } catch (err) {
     res.status(400).json({ "err": err.message })
@@ -67,14 +67,13 @@ const getUser = (req, res) => {
 }
 
 const logout = async (req, res) => {
-  console.log("here");
-  
+
   req.session.destroy((err) => {
     if (err) {
       res.json({ err: "could not log out at the moment" })
     }
     res.clearCookie("connect.sid")
-    res.json({mssg : "logout successful"})
+    res.json({ mssg: "logout successful" })
   })
 }
 
