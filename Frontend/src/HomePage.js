@@ -13,7 +13,7 @@ function HomePage() {
           <div className="hero-content">
             <h1>Discover the Future of Mobile</h1>
             <p>Curated performance. Uncompromising design. Explore our collection of the world's most sought-after smartphones.</p>
-            <a href="#products" className="btn-primary">Shop All Phones</a>
+            <NavLink to="/products" className="btn-primary">Shop All Phones</NavLink>
           </div>
           <div className="hero-image">
             <img src={phones} alt="Flagship Smartphones Showcase" />
@@ -41,7 +41,7 @@ function HomePage() {
             </ul>
             <div className="product-footer">
               <span className="price">From $999</span>
-              <a href="#" className="btn-primary-sm">Add to Cart</a>
+              <NavLink to="/" className="btn-primary-sm">Add to Cart</NavLink>
             </div>
           </article>
 
@@ -61,7 +61,7 @@ function HomePage() {
             </ul>
             <div className="product-footer">
               <span className="price">From $1,299</span>
-              <a href="#" className="btn-primary-sm">Add to Cart</a>
+              <NavLink to="/" className="btn-primary-sm">Add to Cart</NavLink>
             </div>
           </article>
 
@@ -81,10 +81,9 @@ function HomePage() {
             </ul>
             <div className="product-footer">
               <span className="price">From $999</span>
-              <a href="#" className="btn-primary-sm">Add to Cart</a>
+              <NavLink to="/" className="btn-primary-sm">Add to Cart</NavLink>
             </div>
           </article>
-
         </div>
       </section>
     </div>

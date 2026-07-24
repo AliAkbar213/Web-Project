@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import "./styles/Navbar.css"
-import image from './icons/grocery-store.png'
 import { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from './Contexts/AuthContext';
@@ -12,7 +11,6 @@ function Navbar() {
   const { user } = useContext(AuthContext)
 
   const [search, setSearch] = useState("")
-  const [isOpen, setIsOpen] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
