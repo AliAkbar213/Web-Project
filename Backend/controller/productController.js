@@ -4,11 +4,15 @@ const GetAllProducts = async (req, res) => {
     query = `SELECT products.id, products.name, price, brands.name as brand, created_at, image_path
             FROM products JOIN brands ON products.brand_id = brands.id`
 
+
+
     if (req.query.q) {
         query += ` WHERE products.name LIKE "%${req.query.q}%"`
     }
     if (req.query.sort) {
-        query += ` ORDER BY products.${req.query.sort} ${req.query.order}`
+        query += ` ORDER BY CASE products.id WHEN 100 THEN 1 WHEN 119 THEN 2 WHEN 144 THEN 3 ELSE 4 END ASC, products.${req.query.sort} ${req.query.order}`
+    } else {
+        query += ` ORDER BY CASE products.id WHEN 100 THEN 1 WHEN 119 THEN 2 WHEN 144 THEN 3 ELSE 4 END ASC `
     }
 
     const page = parseInt(req.query.page) || 1

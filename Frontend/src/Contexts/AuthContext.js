@@ -13,6 +13,9 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const checkAuth = async () => {
             const res = await fetch(`${process.env.REACT_APP_API_URL}/api/user/profile`, { credentials: "include" })
+            if(!res.ok){
+                return
+            }
             const data = await res.json()
             updateUser(data)
         }

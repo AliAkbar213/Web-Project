@@ -16,7 +16,7 @@ const loginUser = async (req, res) => {
         req.session.user = user;
         res.json(user)
       } else {
-        res.json({ "err": "password incorrect" })
+        res.status(400).json({ "err": "password incorrect" })
       }
     } else {
       res.status(400).json({ "err": "user does not exist" })
@@ -55,14 +55,16 @@ const signupUser = async (req, res) => {
       email,
     });
   } catch (err) {
-    res.json({ "err": err.message })
+    res.status(400).json({ "err": err.message })
   }
 }
 
 const getUser = (req, res) => {
 
   if (req.session.user) {
-    res.json(req.session.user)
+    res.status(200).json(req.session.user)
+  }else{
+    res.status(400).json({err:"no session detected"})
   }
 }
 

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { NavLink, useNavigate } from 'react-router-dom'
-import { AuthContext } from "./AuthContext"
+import { AuthContext } from './Contexts/AuthContext';
 import "./styles/Login.css"
 
 
@@ -33,12 +33,12 @@ function Login() {
 
     if (!response.ok) {
       setError(data.err)
-      console.log("not okay");
-      
+      setLoading(false)
     } else {
-      console.log("okay");
       updateUser(data)
       navigate('/profile')
+      setLoading(false)
+
     }
   }
 

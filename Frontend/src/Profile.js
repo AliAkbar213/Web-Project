@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { AuthContext } from "./AuthContext"
+import { AuthContext } from "./Contexts/AuthContext"
 import { useNavigate } from "react-router-dom";
 import "./styles/Profile.css"
 

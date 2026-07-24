@@ -4,12 +4,13 @@ import HomePage from './HomePage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductDetails from './ProductDetails';
 import Category from './Category';
-import { CartProvider } from './CartContext';
-import { AuthProvider } from './AuthContext';
+import { CartProvider } from './Contexts/CartContext';
+import { AuthProvider } from './Contexts/AuthContext';
 import Signup from './Signup';
 import Login from './Login';
 import Profile from './Profile';
 import { Footer } from './Footer';
+import { Cart } from './Cart';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/cart' element={<Cart />} />
             {/* <Route path='/create' element={<Create />} /> */}
           </Routes>
           <Footer />

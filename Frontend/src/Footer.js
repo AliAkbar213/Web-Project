@@ -5,17 +5,17 @@ export function Footer() {
     <footer className="footer">
       <div className="footer-main">
         <div className="footer-section footer-brand">
-          <h2 className="footer-heading">TechStore</h2>
+          <h2 className="footer-heading">Phonix</h2>
           <p className="footer-description">
-            TechStore: The Ultimate Online Shopping Destination in Kuwait |
+            Phonix: The Ultimate Online Shopping Destination in Kuwait |
             Buy 100% genuine consumer electronics and home appliances from
-            TechStore, the largest online electronics store in Kuwait.
+            Phonix, the largest online electronics store in Kuwait.
           </p>
         </div>
 
         <div className="footer-section footer-info">
           <h2 className="footer-heading">General Information</h2>
-          <p className="footer-link">About TechStore</p>
+          <p className="footer-link">About Phonix</p>
           <p className="footer-link">Help</p>
           <p className="footer-link">FAQs</p>
           <p className="footer-link">Terms & Conditions</p>
@@ -43,7 +43,7 @@ export function Footer() {
 
       <div className="footer-bottom">
         <div className="footer-copyright">
-          <p>Copyright © 2026 TechStore Inc. All rights reserved.</p>
+          <p>Copyright © 2026 Phonix Inc. All rights reserved.</p>
         </div>
 
         <div className="footer-social">

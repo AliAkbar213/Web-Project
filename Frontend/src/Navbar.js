@@ -3,13 +3,13 @@ import "./styles/Navbar.css"
 import image from './icons/grocery-store.png'
 import { useContext, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import CartDrawer from './CartDrawer'
-import { AuthContext } from './AuthContext';
+import { AuthContext } from './Contexts/AuthContext';
+
 
 
 function Navbar() {
   const navigate = useNavigate();
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
   const [search, setSearch] = useState("")
   const [isOpen, setIsOpen] = useState(false)
@@ -22,7 +22,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <h1 className='heading'>Tech Store</h1>
+      <h1 className='heading'>Phonix</h1>
       <form onSubmit={handleSubmit} className="search-bar">
         <label className="search"> Search: </label>
         <input type="text" className="input" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search products..." />
@@ -32,12 +32,12 @@ function Navbar() {
         <NavLink className='link' to="/">Home</NavLink>
         <NavLink className='link' to="/products">Products</NavLink>
         <NavLink className='link' to="/category">Categories</NavLink>
-        <NavLink className='link' to="/signup">Sign up</NavLink>
-        <NavLink className='link' to="/login">Login</NavLink>
-        <NavLink className='link' to="/profile">Profile</NavLink>
+        {!user && <NavLink className='link' to="/login">Login</NavLink>}
+        {user && <NavLink className='link' to="/profile">Profile</NavLink>}
+        <NavLink className='link' to="/cart">Cart</NavLink>
       </div>
-      {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}><img src={image} alt="Cart" className='cart-icon' /></button>}
-      <CartDrawer isOpen={isOpen} closeDrawer={() => { setIsOpen(false) }} />
+      {/* {!isOpen && <button className="cart-btn" onClick={() => { setIsOpen(true) }}><img src={image} alt="Cart" className='cart-icon' /></button>}
+      <CartDrawer isOpen={isOpen} closeDrawer={() => { setIsOpen(false) }} /> */}
     </nav>
   );
 }

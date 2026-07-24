@@ -2,7 +2,7 @@ import useFetch from "./useFetch";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import "./styles/Products.css"
 import { useContext } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "./Contexts/CartContext";
 
 function Products() {
 
