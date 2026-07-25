@@ -6,6 +6,9 @@ const cors = require("cors");
 const session = require("express-session");
 
 const app = express();
+
+app.set('trust proxy', 1)
+
 app.use(cors({
     origin: [
         "http://localhost:3000",
@@ -14,9 +17,6 @@ app.use(cors({
     credentials: true
 }));
 
-app.listen(process.env.PORT, () => {
-    console.log(`listening on port ${process.env.PORT}`);
-});
 app.use(express.json()) // for parsing json content of incoming request
 
 app.use(session({
@@ -24,7 +24,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24,
+        maxAge: 1000 * 60 * 60 ,
         sameSite: 'none',
         secure: true
     }
@@ -48,4 +48,8 @@ app.use('/img', (req, res) => {
 
 app.use((req, res) => {
     res.status(404);
+});
+
+app.listen(process.env.PORT, () => {
+    console.log(`listening on port ${process.env.PORT}`);
 });
