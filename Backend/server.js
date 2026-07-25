@@ -9,7 +9,7 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:3000",
-        "https://bytesale.netlify.app"
+        "https://phonix-mobile.netlify.app"
     ],
     credentials: true
 }));
