@@ -14,7 +14,12 @@ const loginUser = async (req, res) => {
     if (user) {
       if (await bcrypt.compare(password, user.password_hash)) {
         req.session.user = user;
-        res.json(user)
+        return req.session.save((err) => {
+          if (err) {
+            return res.status(500).json({ err: "Session save failed" });
+          }
+          res.json({ id: user.id, name: user.name, email: user.email });
+        });
       } else {
         res.status(400).json({ "err": "password incorrect" })
       }
@@ -48,6 +53,12 @@ const signupUser = async (req, res) => {
       [name, email, password_hash])
 
     req.session.user = { name: name, email: email }
+    return req.session.save((err) => {
+      if (err) {
+        return res.status(500).json({ err: "Session save failed" });
+      }
+      res.json({ name: name, email: email });
+    });
 
     res.status(201).json({
       id: row.insertId,
@@ -63,8 +74,8 @@ const getUser = (req, res) => {
 
   if (req.session.user) {
     res.status(200).json(req.session.user)
-  }else{
-    res.status(400).json({err:"no session detected"})
+  } else {
+    res.status(400).json({ err: "no session detected" })
   }
 }
 
