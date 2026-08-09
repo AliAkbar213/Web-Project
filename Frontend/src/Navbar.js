@@ -29,7 +29,6 @@ function Navbar() {
       <div className="links">
         <NavLink className='link' to="/">Home</NavLink>
         <NavLink className='link' to="/products">Products</NavLink>
-        <NavLink className='link' to="/category">Categories</NavLink>
         {!user && <NavLink className='link' to="/login">Login</NavLink>}
         {user && <NavLink className='link' to="/profile">Profile</NavLink>}
         <NavLink className='link' to="/cart">Cart</NavLink>

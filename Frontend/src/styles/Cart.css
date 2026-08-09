@@ -97,7 +97,8 @@
   gap: 0.75rem;
   background-color: #ffffff;
   padding: 0.35rem 0.6rem;
-  border-radius: 50px; /* Pill container */
+  border-radius: 50px;
+  /* Pill container */
   border: 1px solid #cbd5e0;
 }
 
@@ -130,7 +131,8 @@ button:active {
 .cart-item-btn-inc {
   width: 32px;
   height: 32px;
-  border-radius: 50%; /* Circle shape */
+  border-radius: 50%;
+  /* Circle shape */
   background-color: #edf2f7;
   color: #4a5568;
   display: flex;
@@ -149,7 +151,8 @@ button:active {
 /* Pill-Shaped Action Buttons */
 .cart-btn-clear,
 .cart-remove-item-btn {
-  border-radius: 50px; /* Pill shape */
+  border-radius: 50px;
+  /* Pill shape */
   padding: 0.5rem 1.25rem;
   font-size: 0.875rem;
 }

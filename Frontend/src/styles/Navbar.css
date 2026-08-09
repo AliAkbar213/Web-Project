@@ -5,16 +5,22 @@
 
     padding: 1rem 2rem;
     background: var(--charcoal-blue);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.297);
     gap: 2rem;
+
+    /* Sticky Navbar */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .heading {
     margin: 0;
-    color: white;
-    font-size: 1.8rem;
-    font-weight: 700;
+    color: rgb(239, 231, 231);
+    font-size: 1.9rem;
+    font-weight: 750;
     white-space: nowrap;
+    letter-spacing: 2px;
 }
 
 /* Search */
@@ -23,13 +29,14 @@
     display: flex;
     align-items: center;
     gap: .75rem;
-    flex: 1;
+    flex: 0.5;
     justify-content: center;
 }
 
 .search {
+    font-size: 1rem;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     white-space: nowrap;
 }
 
@@ -37,11 +44,10 @@
     width: 100%;
     max-width: 380px;
     padding: .65rem 1rem;
-
-    border: 2px solid transparent;
+    border: none;
     border-radius: 8px;
 
-    background: white;
+    background: rgb(232, 232, 238);
     color: var(--charcoal-blue);
 
     transition: .2s;

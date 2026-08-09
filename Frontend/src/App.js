@@ -1,16 +1,15 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './Contexts/CartContext';
+import { AuthProvider } from './Contexts/AuthContext';
+import { Cart } from './Cart';
+import { Footer } from './Footer';
 import Products from './Products';
 import Navbar from './Navbar';
 import HomePage from './HomePage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductDetails from './ProductDetails';
-import Category from './Category';
-import { CartProvider } from './Contexts/CartContext';
-import { AuthProvider } from './Contexts/AuthContext';
 import Signup from './Signup';
 import Login from './Login';
 import Profile from './Profile';
-import { Footer } from './Footer';
-import { Cart } from './Cart';
 
 function App() {
   return (
@@ -22,8 +21,6 @@ function App() {
             <Route path='/' element={<HomePage />} />
             <Route path='/products' element={<Products />} />
             <Route path='/products/:id' element={<ProductDetails />} />
-            <Route path='/category' element={<Category />} />
-            <Route path='/products/category/:category' element={<Products />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/profile' element={<Profile />} />

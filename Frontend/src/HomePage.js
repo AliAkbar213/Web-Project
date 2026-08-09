@@ -69,7 +69,7 @@ function HomePage() {
             <div>
               <img
                 src={xiaomi}
-                alt="Google Pixel 10 Pro"
+                alt="Xiaomi Note 15 Pro+"
               />
             </div>
             <h3>Xiaomi Note 15 Pro+</h3>

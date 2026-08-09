@@ -1,41 +1,50 @@
 import useFetch from "./useFetch";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "./styles/Products.css"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "./Contexts/CartContext";
 
 function Products() {
 
   const [searchParams, setSearchParams] = useSearchParams()
-  const { category } = useParams()
 
-  const query = searchParams.get("q") || ""
+  const [filterBrand, setFilterBrand] = useState("")
+
+
+  const query = searchParams.get("q")
+  const sortBy = searchParams.get("date")
+  const sortOrder = searchParams.get("ASC")
+
   const page = parseInt(searchParams.get("page")) || 1
-  let url = process.env.REACT_APP_API_URL
 
-  if (category) {
-    url += `/api/products/category/${category}?page=${page}`
-  } else {
+  let url = process.env.REACT_APP_API_URL
+  if (query) {
     url += `/api/products?q=${query}&page=${page}`
+  } else {
+    url += `/api/products?page=${page}`
   }
+  console.log(searchParams.toString());
+
+
   const { data, loading, error } = useFetch(url);
 
   const { IncreaseCart, decreaseCart, itemInCart, cart } = useContext(CartContext)
-  // const changePage = (newPage) => {
-  //   setSearchParams({ page: newPage });
-  // }
 
   const changePage = (newPage) => {
-    // 1. Create a new URLSearchParams object from the existing ones to preserve 'q'
     const newParams = new URLSearchParams(searchParams);
     newParams.set("page", newPage);
     setSearchParams(newParams);
-
-    // 2. Scroll to top
     window.scrollTo({
       top: 80,
       behavior: "smooth"
     });
+  }
+
+  const filterBrands = (brand) => {
+    // const newParams = new URLSearchParams(searchParams);
+    // newParams.set("page", newPage);
+    // setSearchParams(newParams);
+    setFilterBrand(brand)
   }
 
   return (
@@ -44,26 +53,67 @@ function Products() {
       {error && <div className="products-error">{error}</div>}
       {loading && <div className="products-loading">Loading...</div>}
 
+      <div>
+        <label>Brands: </label>
+        <select name="brands" onChange={(e) => filterBrands(e.target.value)}>
+          <option value="All">All</option>
+          <option value="Apple">Apple</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Honor">Honor</option>
+        </select>
+      </div>
       <div className="products-grid">
-        {data.map((item) => (
-          <div className="products-card" key={item.id} >
-            <Link to={`/products/${item.id}`} className="products-link">
-              <div className="products-image">
-                {item.image_path && <img src={`${process.env.REACT_APP_API_URL}/images/${item.image_path}`} alt={item.name} />}
+        {data.map((item) => {
+          if (!filterBrand) {
+            return (
+              <div className="products-card" key={item.id} >
+                <Link to={`/products/${item.id}`} className="products-link">
+                  <div className="products-image">
+                    {item.image_path && <img src={`${process.env.REACT_APP_API_URL}/images/${item.image_path}`} alt={item.name} />}
+                  </div>
+                  <p className="products-name">{item.name}</p>
+                  <p className="products-brand">{item.brand}</p>
+                  <p className="products-price">{item.price}</p>
+                </Link>
+                {!(itemInCart(item.id)) && <button onClick={() => { IncreaseCart(item.id, item.name, item.price); console.log(cart); }} className="products-add-btn">Add To Cart</button>}
+                {itemInCart(item.id) &&
+                  <div className="products-buttons">
+                    <button onClick={() => { IncreaseCart(item.id); console.log(cart); }} className="products-inc-btn">+</button>
+                    <p className="products-quantity">In Cart: {cart.find((cartItem) => cartItem.id === item.id).quantity}</p>
+                    <button onClick={() => { decreaseCart(item.id) }} className="products-dec-btn">-</button>
+                  </div>}
               </div>
-              <p className="products-name">{item.name}</p>
-              <p className="products-brand">{item.brand}</p>
-              <p className="products-price">{item.price}</p>
-            </Link>
-            {!(itemInCart(item.id)) && <button onClick={() => { IncreaseCart(item.id, item.name, item.price); console.log(cart); }} className="products-add-btn">Add To Cart</button>}
-            {itemInCart(item.id) &&
-              <div className="products-buttons">
-                <button onClick={() => { IncreaseCart(item.id); console.log(cart); }} className="products-inc-btn">+</button>
-                <p className="products-quantity">In Cart: {cart.find((cartItem) => cartItem.id === item.id).quantity}</p>
-                <button onClick={() => { decreaseCart(item.id) }} className="products-dec-btn">-</button>
-              </div>}
-          </div>
-        ))}
+            )
+          }
+          if (item.brand === filterBrand) {
+            return (
+              <div className="products-card" key={item.id} >
+                <Link to={`/products/${item.id}`} className="products-link">
+                  <div className="products-image">
+                    {item.image_path && <img src={`${process.env.REACT_APP_API_URL}/images/${item.image_path}`} alt={item.name} />}
+                  </div>
+                  <p className="products-name">{item.name}</p>
+                  <p className="products-brand">{item.brand}</p>
+                  <p className="products-price">{item.price}</p>
+                </Link>
+                {!(itemInCart(item.id)) && <button onClick={() => { IncreaseCart(item.id, item.name, item.price); console.log(cart); }} className="products-add-btn">Add To Cart</button>}
+                {itemInCart(item.id) &&
+                  <div className="products-buttons">
+                    <button onClick={() => { IncreaseCart(item.id); console.log(cart); }} className="products-inc-btn">+</button>
+                    <p className="products-quantity">In Cart: {cart.find((cartItem) => cartItem.id === item.id).quantity}</p>
+                    <button onClick={() => { decreaseCart(item.id) }} className="products-dec-btn">-</button>
+                  </div>}
+              </div>
+            )
+          }
+
+          return (
+            <div>
+              <h2>No Products Found</h2>
+            </div>
+          )
+
+        })}
       </div>
       <div className="products-page-btn">
         {page !== 1 && <button onClick={() => changePage(page - 1)} className="products-prev-page">Previous Page</button>}

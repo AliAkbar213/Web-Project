@@ -47,6 +47,14 @@ export function CartProvider({ children }) {
         setCart([])
     }
 
+    // const getTotal =() => {
+    //     const sum = 0
+    //     for (const i of cart){
+    //         i.price += sum
+    //     }
+    //     return sum
+    // }
+
 
     return (
         <CartContext.Provider value={{ IncreaseCart, decreaseCart, itemInCart, removeCart, deleteCart, cart }}>

@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { CartContext } from "./Contexts/CartContext";
 import "./styles/Cart.css"
 
 export function Cart() {
   const { cart, IncreaseCart, decreaseCart, removeCart, deleteCart } = useContext(CartContext)
+
+  // const [total, setTotal] = useState(0)
 
   if (!cart || cart.length === 0) {
     return (
@@ -39,6 +41,9 @@ export function Cart() {
             </div>
           </div>
         ))}
+        <div>
+          {/* <h3>Total Price: ${ getTotal() }</h3> */}
+        </div>
       </div>
     </div>
   )

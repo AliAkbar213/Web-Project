@@ -68,7 +68,9 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
+          {loading &&
+            <h2>loading</h2>
+          }
           {!loading &&
             <button
               type="submit"

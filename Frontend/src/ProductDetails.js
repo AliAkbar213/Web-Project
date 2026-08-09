@@ -7,7 +7,7 @@ import { CartContext } from "./Contexts/CartContext";
 function ProductDetails() {
   const { IncreaseCart, decreaseCart, itemInCart, cart } = useContext(CartContext)
   const { id } = useParams();
-  const url = process.env.REACT_APP_API_URL || "http://localhost:5000"
+  const url = process.env.REACT_APP_API_URL
   const { data, loading, error } = useFetch(`${url}/api/products/${id}`);
   const item = data
   console.log(item);
