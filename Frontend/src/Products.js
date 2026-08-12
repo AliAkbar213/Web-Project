@@ -12,8 +12,8 @@ function Products() {
 
 
   const query = searchParams.get("q")
-  const sortBy = searchParams.get("date")
-  const sortOrder = searchParams.get("ASC")
+  // const sortBy = searchParams.get("date")
+  // const sortOrder = searchParams.get("ASC")
 
   const page = parseInt(searchParams.get("page")) || 1
 
